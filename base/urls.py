@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import TaskDetail, TaskList, TaskCreate, TaskUpdate, DeleteView, DetailView
+from .views import TaskDetail, TaskList, TaskCreate, TaskUpdate, DeleteView, DetailView, CustomLoginView
 
 urlpatterns = [
+
+    path('login/', CustomLoginView.as_view(), name = 'login'),
     path('', TaskList.as_view(), name='tasks'),
     path('task/<int:pk>/', TaskDetail.as_view(), name='task'),
     path('task-create/', TaskCreate.as_view(), name='task-create'),

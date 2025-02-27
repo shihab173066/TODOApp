@@ -10,7 +10,7 @@
     <p>{{request.user}}</p>
     <a href="">Logout</a>
     {% else %}
-    <a href="">Login</a>
+    <a href="{% url 'login' %}">Login</a>
     {% endif %}
     <h1>My ToDo List</h1>
     <a href="{% url 'task-create' %}">Add Item</a>
