@@ -9,6 +9,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .models import Task
+# Imports for Reordering Feature
+from django.views import View
+from django.shortcuts import redirect
+from django.db import transaction
+
+from .models import Task
+from .forms import PositionForm
 
 # Create your views here.
 
@@ -82,6 +89,23 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 
 class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
-    fields = '__all__'
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user=owner)
+
+class TaskReorder(View):
+    def post(self, request):
+        form = PositionForm(request.POST)
+
+        if form.is_valid():
+            positionList = form.cleaned_data["position"].split(',')
+
+            with transaction.atomic():
+                for index, task_id in enumerate(positionList):
+                    task = Task.objects.get(id=task_id, user=request.user)
+                    task.order = index 
+                    task.save()
+
+        return redirect(reverse_lazy('tasks'))

@@ -9,9 +9,10 @@ class Task(models.Model):
     description = models.TextField()
     complete = models.BooleanField(default=False)
     create = models.DateTimeField(auto_now_add=True)
+    order = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
     
     class Meta:
-        ordering = ['complete']
+        ordering = ['order', 'complete']

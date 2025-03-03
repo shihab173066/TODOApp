@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import TaskDetail, TaskList, TaskCreate, TaskUpdate, DeleteView, DetailView, CustomLoginView, RegisterPage
+from .views import TaskDetail, TaskList, TaskCreate, TaskUpdate, DeleteView, DetailView, CustomLoginView, RegisterPage, TaskReorder
 from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path('task-create/', TaskCreate.as_view(), name='task-create'),
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name='task-update'),
     path('task-delete/<int:pk>/', DeleteView.as_view(), name='task-delete'),
+    path('task-reorder/', TaskReorder.as_view(), name='task-reorder'),
 ]
