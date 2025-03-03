@@ -4,12 +4,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="description"
-        content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
-
+        content="This is a to-do list implemented using Django by Dennis Ivy, a full-stack web developer. It helps you organize tasks efficiently.">
+    <meta name="keywords" content="Django, To-Do List, Full Stack, Web Development, Task Management, Productivity">
+    <meta name="author" content="Dennis Ivy">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>To Do Items</title>
-    <meta name="description" content="">
+    <title>Shihab TODO Site</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Shihab TODO Site">
+    <meta property="og:description" content="A simple to-do list application implemented using Django.">
+    <meta property="og:image" content="path/to/your/image.jpg">
+    <meta property="og:url" content="https://www.yoursite.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Shihab TODO Site">
+    <meta name="twitter:description" content="A to-do list app built with Django for better task management.">
+    <meta name="twitter:image" content="path/to/your/image.jpg">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
@@ -18,7 +29,7 @@
         body {
             background-color: #FAFAFA;
             font-family: 'Nunito', sans-serif;
-            padding-top: 50px;
+            padding-top: 0px;
         }
 
         h1,
@@ -26,8 +37,7 @@
         h3,
         h4,
         h5,
-        h6,
-            {
+        h6 {
             font-family: 'Raleway', sans-serif;
         }
 
@@ -59,7 +69,7 @@
             color: #fff;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+            background: linear-gradient(90deg, rgb(195, 186, 245) 0%, rgb(111, 123, 235) 43%, rgb(76, 79, 241) 100%);
         }
 
         .header-bar a {
@@ -90,14 +100,14 @@
         .task-complete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(105, 192, 105);
+            background-color: rgb(80, 226, 80);
             border-radius: 50%;
         }
 
         .task-incomplete-icon {
             height: 20px;
             width: 20px;
-            background-color: rgb(218, 218, 218);
+            background-color: rgb(235, 128, 128);
             border-radius: 50%;
         }
 
@@ -110,7 +120,7 @@
             padding: 20px 0px;
         }
 
-        /*Handle Classes*/
+        /* Handle Classes */
 
         .handle {
             display: inline-block;
@@ -132,7 +142,7 @@
         }
 
         .dropArea {
-            background-color: #f1f2f6;
+            background-color: rgb(72, 72, 73);
             color: black;
             border: #ced6e0 1px solid;
         }
@@ -141,12 +151,11 @@
             opacity: 0.6;
         }
 
-
         #add-link {
-            color: #EB796F;
+            color: rgb(97, 143, 241);
             text-decoration: none;
             font-size: 42px;
-            text-shadow: 1px 1px #81413b;
+            text-shadow: 1px 1px rgb(101, 105, 165);
         }
 
         #search-add-wrapper {
@@ -156,7 +165,7 @@
             padding: 20px;
         }
 
-        @media screen and (max-width:320px) {
+        @media screen and (max-width: 320px) {
             #search-add-wrapper {
                 padding: 10px;
             }
@@ -184,7 +193,7 @@
         .button {
             border: 1px solid #757575;
             background-color: #FFF;
-            color: #EB796F;
+            color: rgb(21, 89, 235);
             padding: 10px;
             font-size: 14px;
             border-radius: 5px;
@@ -195,16 +204,100 @@
         .card-body {
             padding: 20px;
         }
+
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            background-color: rgb(76, 79, 241);
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            margin-bottom: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            padding-right: 20px;
+            padding-left: 20px;
+            color: rgb(255, 255, 255) !important; 
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 30px; 
+            color: rgb(255, 255, 255) !important; 
+        }
+
+        .navbar .nav-item {
+            padding: 10px;
+        }
+
     </style>
 </head>
 
 <body>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(90deg, rgb(60, 29, 235) 0%, rgb(111, 123, 235) 43%, rgb(60, 29, 235) 100%);">
+        <a class="navbar-brand" href="#">Shihab TODO Site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="current-date"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         {% block content %} {% endblock content %}
     </div>
 
-</body>
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <p>&copy; 2025 Md. Shihab Hossain. All rights reserved.</p>
+        <div>
+            <a href="https://github.com/shihab173066" target="_blank" class="mx-3">
+                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub" style="width: 30px;">
+            </a>
+            <a href="https://www.linkedin.com/in/mdshihab/" target="_blank" class="mx-3">
+                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn" style="width: 30px;">
+            </a>
+            <a href="https://shihab173066.github.io/Shihab-Protfolio-2024/" target="_blank" class="mx-3">
+                <img src="https://img.icons8.com/ios-filled/50/000000/domain.png" alt="Portfolio" style="width: 30px;">
+            </a>
+        </div>
+    </footer>    
 
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Current Date Script -->
+    <script>
+        const date = new Date();
+        const formattedDate = date.toDateString();
+        document.getElementById("current-date").textContent = formattedDate;
+    </script>
+
+</body>
 
 </html>

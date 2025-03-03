@@ -109,3 +109,7 @@ class TaskReorder(View):
                     task.save()
 
         return redirect(reverse_lazy('tasks'))
+    
+
+def about(request):
+    return render(request, 'base/about.html')
