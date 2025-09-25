@@ -32,6 +32,12 @@ ALLOWED_HOSTS = [
     "www.myecommercesite.com"
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'https://todoapp-wego.onrender.com',
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
